@@ -3,6 +3,7 @@ Notes on how to do the fundamentals of scala
 
 Here is a list to remind myself on what things I have done.
 
+The scala book 3rd edition will be attempted here, as well as the red book.
 
 ### Thing -> Software used
 ________________________
