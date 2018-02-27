@@ -20,6 +20,7 @@ lib
 lib_managed
 log
 logs
+*.pdf
 modules
 /out
 precompiled
