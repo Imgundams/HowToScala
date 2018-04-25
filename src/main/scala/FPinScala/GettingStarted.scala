@@ -1,0 +1,5 @@
+package FPinScala
+
+class GettingStarted {
+
+}
