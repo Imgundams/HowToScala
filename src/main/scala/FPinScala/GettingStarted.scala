@@ -49,26 +49,28 @@ object MyModule {
   }
 
   def main(arg: Array[String]): Unit = {
-    println(formatAbs(arg.head.toInt)
-      + "\n" +
-      formatFactorial(arg.head.toInt)
-      + "\n" +
-      formatFibonacci(arg.head.toInt)
-      + "\n" +
-      formatResult("Absolute", arg.head.toInt, absolute)
-      + "\n" +
-      formatResult("Factorial", arg.head.toInt, factorial)
-      + "\n" +
-      formatResult("Fibonacci", arg.head.toInt, fibonacci))
-    println(formatResult("absolute value", -42, absolute))
-    println(formatResult("increment", 7, factorial))
-    println(formatResult("increment", 7, (x: Int) => x + 1))
-    println(formatResult("increment", 7, (x) => x + 1))
-    println(formatResult("increment", 7, x => x + 1))
-    println(formatResult("increment", 7, _ + 1))
-    println(formatResult("increment", 7, x => {val r = x + 1;r}))
-    TestFib
-
+    try{
+      println(formatAbs(arg.head.toInt)
+        + "\n" +
+        formatFactorial(arg.head.toInt)
+        + "\n" +
+        formatFibonacci(arg.head.toInt)
+        + "\n" +
+        formatResult("Absolute", arg.head.toInt, absolute)
+        + "\n" +
+        formatResult("Factorial", arg.head.toInt, factorial)
+        + "\n" +
+        formatResult("Fibonacci", arg.head.toInt, fibonacci))
+        println(formatResult("absolute value", -42, absolute))
+        println(formatResult("increment", 7, factorial))
+        println(formatResult("increment", 7, (x: Int) => x + 1))
+        println(formatResult("increment", 7, (x) => x + 1))
+        println(formatResult("increment", 7, x => x + 1))
+        println(formatResult("increment", 7, _ + 1))
+        println(formatResult("increment", 7, x => {val r = x + 1;r}))
+        TestFib
+    }
+    catch {case e:Exception => println("Blew up")}
   }
 
   object TestFib {
@@ -110,4 +112,12 @@ object MyModule {
     }
     go(0, 0, as.length - 1)
   }
+
+  def partial1[A,B,C](a:A, f: (A,B) =>C) : B => C = (b:B) => f(a,b)
+
+  def curry[A,B,C](f: (A, B) => C): A=> (B => C) = a => b => f(a,b)
+
+  def uncurry[A,B,C](f:A => B => C): (A, B)=> C = (a,b) => f(a)(b)
+
+  def compose[A,B,C](f: B => C, g: A => B): A => C = a => f(g(a))
 }
