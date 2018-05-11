@@ -48,6 +48,13 @@ def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = // Utility functions
     case Cons(x, xs) => f(x, foldRight(xs, z)(f))
   }
 
+def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
+  l match {
+    case Nil => z
+    case Cons(x,xs) => f(x, foldLeft(xs, z)(f))
+  }
+}
+
 def sum2(ns: List[Int]) =
   foldRight(ns, 0)((x, y) => x + y)
 
@@ -98,7 +105,9 @@ def length[A](l: List[A]): Int ={
   looper(l,0)
 }
 
-def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = ???
+def length2[A](l: List[A]): Int = foldRight(l,0)((a,b) => b+1 )
+
+def p(a: Any):Unit = println(a)
 
 def map[A, B](l: List[A])(f: A => B): List[B] = ???
 
@@ -119,5 +128,5 @@ drop(list3,-2)
 setHead(list3,5555)
 dropWhile(list3)(x=> x<33)
 init(list3)
-list3
-length(list3)
+p(length(list3))
+p(length2(list3))
