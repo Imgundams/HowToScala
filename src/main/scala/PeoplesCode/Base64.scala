@@ -1,7 +1,7 @@
 package PeoplesCode
 
 /**
-  * From Try-Parser/Base64-encryption ***REMOVED***/Try-Parser/Base64-encryption
+  * From Try-Parser/Base64-encryption github/Try-Parser/Base64-encryption
   */
 object Base64 {
 //  private[this] final val base: String = new String((('a' to 'z') ++ ('A' to 'Z') ++ ('0' to '9')).toArray) + "+/"
