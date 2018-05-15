@@ -51,7 +51,7 @@ def foldRight[A, B](as: List[A], z: B)(f: (A, B) => B): B = // Utility functions
 def foldLeft[A, B](l: List[A], z: B)(f: (B, A) => B): B = {
   l match {
     case Nil => z
-    case Cons(x,xs) => f(x, foldLeft(xs, z)(f))
+    case Cons(x,xs) => foldLeft(xs, f(z,x))(f)
   }
 }
 
@@ -70,10 +70,10 @@ def tail[A](l: List[A]): List[A] = l match {
 
 def setHead[A](l: List[A], heads: A): List[A] = Cons(heads,tail(l))
 
-def drop[A](l: List[A], n: Int): List[A] = n match {
+def drop[A](l: List[A], dropTillThisValue: Int): List[A] = dropTillThisValue match {
   case 0 => l
-  case _ if n<0 =>drop(tail(l),-n-1)
-  case _ =>drop(tail(l),n-1)
+  case _ if dropTillThisValue<0 =>drop(tail(l),-dropTillThisValue-1)
+  case _ =>drop(tail(l),dropTillThisValue-1)
 }
 
 def dropWhile[A](l: List[A])(f: A => Boolean): List[A] = {
@@ -107,7 +107,12 @@ def length[A](l: List[A]): Int ={
 
 def length2[A](l: List[A]): Int = foldRight(l,0)((a,b) => b+1 )
 
-def p(a: Any):Unit = println(a)
+def sum3(l: List[Int]):Int = foldLeft(l,0)(_ + _)
+def product3(l: List[Int]):Int = foldLeft(l,0)(_ * _)
+
+def reverse2[A](list: List[A]):List[A] = foldLeft(list, List[A]())((resultList,head)=>Cons(head,resultList))
+
+def p(somethingToPrint: Any):Unit = println(somethingToPrint)
 
 def map[A, B](l: List[A])(f: A => B): List[B] = ???
 
@@ -130,3 +135,4 @@ dropWhile(list3)(x=> x<33)
 init(list3)
 p(length(list3))
 p(length2(list3))
+p(reverse2(list3))
