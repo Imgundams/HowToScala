@@ -119,3 +119,53 @@ println(f"£$pi%1.2f")
 
 // 3.1. Looping with for and foreach
 val fruitBasket = Array("apple", "banana", "orange", "apple", "apple")
+val names = Map("firstName" -> "Daniel",
+                "lastName" -> "Rain",
+                "age" -> 100,
+                "weight" -> 10.1)
+for ((aaa,bbb) <- names) println(s"key: $aaa, value: $bbb")
+
+// 3.2. Using for Loops with Multiple Counters
+val arrayDim = Array.ofDim[Int](2,2)
+arrayDim(0)(0) = 0
+arrayDim(0)(1) = 1
+arrayDim(1)(0) = 2
+arrayDim(1)(1) = 3
+
+// 3.3. Using a for Loop with Embedded if Statements
+for {
+  i <- 1 to 20
+  if i % 10 == 0
+  if i > 15
+} println(i)
+
+// 3.4. Creating a for Comprehension (for/yield Combination)
+val firstNames = Array("chris", "ed", "maurice")
+val capNames = for (e <- firstNames) yield println(e.capitalize)
+
+// 3.5. Implementing break and continue ((SKIPPING BECAUSE REASONS))
+
+// 3.6. Using the if Construct Like a Ternary Operator
+def abs(x: Int) = if (x >= 0) x else -x
+def max(a: Int, b: Int) = if (a > b) a else b
+
+// 3.7. Using a Match Expression Like a switch Statement
+val monthNumber = 5
+val month =
+  monthNumber match {
+ case 1 => "January"
+ case 2 => "February"
+ case 3 => "March"
+ case 4 => "April"
+ case 5 => "May"
+ case 6 => "June"
+ case 7 => "July"
+ case 8 => "August"
+ case 9 => "September"
+ case 10 => "October"
+ case 11 => "November"
+ case 12 => "December"
+ case _ => "Undecimber"
+}
+
+// 3.8

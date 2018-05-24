@@ -17,14 +17,6 @@ val x = List(1, 2, 3, 4, 5) match {
   case _ => 42
 }
 
-val exercise1 = List(1, 2, 3, 4, 5) match {
-  case Cons(x, Cons(2, Cons(4, _))) => x
-  case Nil => 42
-  case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => (x + y)
-  case Cons(h,t) => h + sum(t)
-  case _ => 101
-}
-
 def sum(ints: List[Int]): Int = ints match { // A function that uses pattern matching to add up a list of integers
   case Nil => 0 // The sum of the empty list is 0.
   case Cons(x, xs) => x + sum(xs) // The sum of a list starting with `x` is `x` plus the sum of the rest of the list.
@@ -61,21 +53,31 @@ def sum2(ns: List[Int]) =
 def product2(ns: List[Double]) =
   foldRight(ns, 1.0)(_ * _) // `_ * _` is more concise notation for `(x,y) => x * y`; see sidebar
 
+// Exercise 1
+val exercise1 = List(1, 2, 3, 4, 5) match {
+  case Cons(x, Cons(2, Cons(4, _))) => x
+  case Nil => 42
+  case Cons(x, Cons(y, Cons(3, Cons(4, _)))) => (x + y)
+  case Cons(h,t) => h + sum(t)
+  case _ => 101
+}
 
+// Exercise 2
 def tail[A](l: List[A]): List[A] = l match {
   case Nil => l
   case Cons(_,Nil)=>Nil
   case Cons(_,tails)=>tails
 }
 
-def setHead[A](l: List[A], heads: A): List[A] = Cons(heads,tail(l))
 
+// Exercise 3
 def drop[A](l: List[A], dropTillThisValue: Int): List[A] = dropTillThisValue match {
   case 0 => l
   case _ if dropTillThisValue<0 =>drop(tail(l),-dropTillThisValue-1)
   case _ =>drop(tail(l),dropTillThisValue-1)
 }
 
+// Exercise 4
 def dropWhile[A](l: List[A])(f: A => Boolean): List[A] = {
   l match {
     case Nil => Nil
@@ -86,6 +88,10 @@ def dropWhile[A](l: List[A])(f: A => Boolean): List[A] = {
   }
 }
 
+// Exercise 5
+def setHead[A](l: List[A], heads: A): List[A] = Cons(heads,tail(l))
+
+// Exercise 6
 def init[A](l: List[A]): List[A] = {
   l match{
     case Nil => Nil
@@ -105,14 +111,25 @@ def length[A](l: List[A]): Int ={
   looper(l,0)
 }
 
+
+// Exercise 9
 def length2[A](l: List[A]): Int = foldRight(l,0)((a,b) => b+1 )
 
+// Exercise 11
 def sum3(l: List[Int]):Int = foldLeft(l,0)(_ + _)
 def product3(l: List[Int]):Int = foldLeft(l,0)(_ * _)
 
+// Exercise 12
 def reverse2[A](list: List[A]):List[A] = foldLeft(list, List[A]())((resultList,head)=>Cons(head,resultList))
 
 def p(somethingToPrint: Any):Unit = println(somethingToPrint)
+
+// Exercise 13
+def foldLeftWithFoldRight[A,B](list: List[A],z:B ):List[A] = ???
+
+
+
+
 
 def map[A, B](l: List[A])(f: A => B): List[B] = ???
 
