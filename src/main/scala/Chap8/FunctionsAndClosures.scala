@@ -34,7 +34,7 @@ class FunctionsAndClosures {
   //  Principle of Functional programming is programs should
   // be able to be decomposed into small functions that do a
   //  well defined function well
-  class longLinesLocalProcessLine {
+  class LongLinesLocalProcessLine {
     import scala.io.Source
     object LongLines {
       def processFile(filename: String, width: Int) :Unit= {
@@ -50,6 +50,7 @@ class FunctionsAndClosures {
   // First-Class Functions
 
   // Function literals
+  class FunctionLiterals{
   (x:Int) => x+1
   var increase = (x: Int) => x+1
   increase(49)  // Returns 50
@@ -64,4 +65,31 @@ class FunctionsAndClosures {
   val someNumbers = List(-11, -10, -5, 0, 5, 10)
   someNumbers.foreach((x: Int) => println(x))
   someNumbers.filter((x: Int) => x > 0)
+  val f = (_:Int) + (_:Int)
+  f(50,100)
+  }
+
+// Partially applied functions
+
+  class PartiallyAppliedFunctions{
+    val someNumbers = List(-11, -10, -5, 0, 5, 10)
+    someNumbers.foreach(println _)
+    someNumbers.foreach(x => println(x)) // Both this and above are treated the same by scala
+
+    def sum(a:Int, b:Int, c:Int) :Int= a + b + c
+    val c = sum _ // treated as a partially applied function
+    val d = sum _
+    d(10,20,30)
+  }
+
+// Closure
+  class Closures{
+//  (x:Int) => x + more // more causes compilation error on it's own
+  (x:Int) => x + _
+
+  (x:Int) => x + more
+  val more = 1
+  val addMore = (x: Int) => x + more
+  addMore(10)
+}
 }
