@@ -135,13 +135,13 @@ class FunctionsAndClosures {
   //  Tail Recursion
   class TailRecusion {
 
-    def isGoodEnough(d: Double) = ???
+    def isGoodEnough(d: Double): Boolean = d <= 10 && d >= 5
 
-    def improve(d: Double) = ???
+    def improve(d: Double): Double = if (d<5) d*1.5 else d*0.5
 
     def approximate(guess: Double): Double = {
       if (isGoodEnough(guess)) guess
-      else approximate((improve(guess)))
+      else approximate(improve(guess))
     }
 
     def approximateLoop(initalGuess: Double): Double = {
@@ -149,6 +149,30 @@ class FunctionsAndClosures {
       while (isGoodEnough(guess))
         guess = improve(guess)
       guess
+    }
+
+    def boom(x: Int): Int ={
+      if (x==0) throw new Exception("Boom!")
+      else boom(x-1)+1
+    } // This results in endless "Boom!" Exceptions
+
+//  Tail Call Optimization
+   def bang(x:Int): Int = {
+     if (x == 0) throw new Exception("Bang!")
+     else bang(x-1)
+   } // The scala compile only shows you a single stacktrace of "Bang!" as this is a tail recusive
+    // Limits of tail recusive
+    // if the recusion is indirect there is no optimisation for recursion
+    def isEven(x: Int): Boolean =
+      if (x == 0) true else isOdd(x - 1)
+    def isOdd(x: Int): Boolean =
+      if (x == 0) false else isEven(x - 1)
+    val funValue = nestedFun _
+    def nestedFun(x: Int): Unit = {
+      if (x !=0) {
+        println(x)
+        funValue(x - 1)
+      }
     }
   }
 
