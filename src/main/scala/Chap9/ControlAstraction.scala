@@ -82,4 +82,9 @@ class ControlAstraction {
   def curriedSum(x: Int)(y: Int) = x + y
   def first(x:Int)= (y: Int) => x+y
 
+  //Writing new control structures,
+
+  def twice(op: Double => Double, x: Double) = op(op(x))
+
+
 }
