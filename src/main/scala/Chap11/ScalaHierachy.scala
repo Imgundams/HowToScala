@@ -8,4 +8,8 @@ class ScalaHierachy {
 //  def hashCode: Int
 //  def toString: String
 
+//  [Any] type has two subclasses, AnyVal(values) and AnyRef(collections)
+
+//  To define your own value class you extend AnyVal
+
 }
