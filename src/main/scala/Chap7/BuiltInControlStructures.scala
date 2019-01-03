@@ -104,23 +104,6 @@ class BuiltInControlStructures {
 
   grepBetter(".*gcd.*")
 
-  // Producing a new collection
-  def scalaFiles =
-    for {
-      file <- filesHere
-      if file.getName.endsWith(".scala")
-    } yield file // this results in a Array[File] inside a single collection
-  // Transforming an Array[File] to a Array[Int] with for
-  val forLineLengths =
-  for {
-    file <- filesHere
-    if file.getName.endsWith(".scala")
-    line <- fileLines(File)
-    trimmed = line.trim
-    trimmed.matches(".*for.*")
-    if trimmed.matches(".*for.*")
-  } yield trimmed.length
-
   // Exception handling with try expressions
   // exceptions can be thrown with `throw new IllegalArgumentException`
   // first an exception object is created the you throw it

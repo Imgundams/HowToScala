@@ -154,7 +154,8 @@ class Rational7(n: Int, d: Int) {
  if (b == 0) a else gcd(b, a % b)
  }
 
-
-new Rational1(1, 2)
-println(new Rational2(3, 4))
-val rational = new Rational8(2,54)
+object Rational {
+  new Rational1(1, 2)
+  println(new Rational2(3, 4))
+  val rational = new Rational8(2, 54)
+}
